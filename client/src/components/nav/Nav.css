@@ -1,0 +1,16 @@
+.nav-container {
+    width: 80%;
+    background: #33bb22;
+    color: beige;
+    height: 50px;
+    margin: 0 200px;
+}
+
+.nav-items {
+    position: absolute;
+    margin: 10px;
+}
+
+.nav-items a {
+    margin: 10px;
+}
