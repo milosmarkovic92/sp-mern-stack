@@ -8,6 +8,14 @@ module.exports.index = (req, res, next) => {
     .catch(next);
 };
 
+module.exports.show = (req, res, next) => {
+  Character.findOne({ _id: req.params.id })
+    .then(character => {
+      res.send(character);
+    })
+    .catch(next);
+};
+
 module.exports.create = (req, res, next) => {
   Character.create(req.body)
     .then(character => {

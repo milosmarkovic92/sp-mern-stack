@@ -9,7 +9,7 @@ const port = process.env.port || 5000;
 // // connect with database
 mongoose.connect("mongodb://localhost/south-park");
 
-app.use(express.static("../frontend/public"));
+app.use(express.static("../client/public"));
 
 // // middleware to get body of input from post request
 app.use(bodyParser.json());

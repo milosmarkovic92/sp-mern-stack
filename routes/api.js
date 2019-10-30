@@ -4,6 +4,9 @@ const charactersController = require("../controllers/characters.controller");
 // route for getting all characters from database
 router.get("/characters", charactersController.index);
 
+// route for getting single character from database by its id
+router.get("/characters/:id", charactersController.show);
+
 // route for adding new character to database
 router.post("/characters", charactersController.create);
 

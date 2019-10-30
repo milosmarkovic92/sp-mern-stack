@@ -1,0 +1,14 @@
+.nav-container a {
+    text-decoration: none;
+    color: rgb(211, 207, 207);
+    padding: 10px 20px;
+    text-transform: uppercase;
+}
+
+.nav-container a:hover {
+    color: #fff;
+}
+
+.nav-container {
+    padding: 0 50px;
+}

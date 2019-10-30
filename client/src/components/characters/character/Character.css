@@ -1,0 +1,52 @@
+.avatar {
+    margin: auto;
+    height: 200px;
+    width: 170px;
+    border: 2px solid #fff;
+}
+
+.character-container {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    text-align: center;
+}
+
+.character {
+    display: flex;
+    align-content: center;
+    padding: 20px;
+    margin: auto;
+    width: 100%;
+    border: 3px solid rgb(219, 244, 248);
+    background: rgba(148, 150, 147, 0.342);
+}
+
+.character h6 {
+    background-color: #fff;
+    color: #000;
+    margin: 5px;
+}
+
+.character p {
+    color: #fff;
+}
+
+.character-container h1 {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.one {
+    width: 40%;
+    border-right: 1px solid #fff;
+}
+
+.two {
+    width: 60%;
+}
+
+.edit {
+    float: right;
+    margin-top: 20px;
+}
