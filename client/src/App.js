@@ -4,8 +4,9 @@ import "./App.css";
 import Home from "./components/nav/navItems/home/Home";
 import Characters from "./components/nav/navItems/characters/Characters";
 import Character from "./components/characters/character/Character";
-import NewCharacter from "./components/characters/NewCharacter";
+import NewCharacter from "./components/characters/newCharacter/NewCharacter";
 import Navigation from "./components/nav/Navigation";
+import EditCharacter from "./components/characters/editCharacter/EditCharacter";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route exact path="/characters" component={Characters} />
         <Route exact path="/characters/new" component={NewCharacter} />
         <Route exact path="/characters/:id" component={Character} />
+        <Route exact path="/characters/:id/edit" component={EditCharacter} />
       </Switch>
     </div>
   );

@@ -13,11 +13,13 @@ const CharacterSchema = new Schema({
     required: [true, "Last name field is required!"],
     minlength: 3
   },
-  gender: {
-    type: String
+  picture: {
+    type: String,
+    required: [true, "Picture field is required!"]
   },
   age: {
-    type: Number
+    type: Number,
+    required: [true, "Age field is required!"]
   },
   occupation: {
     type: String,
@@ -39,7 +41,8 @@ const CharacterSchema = new Schema({
     }
   },
   quote: {
-    type: String
+    type: String,
+    required: [true, "Quote field is required!"]
   }
 });
 

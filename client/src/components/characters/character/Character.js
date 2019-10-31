@@ -4,14 +4,14 @@ import { Button } from "react-bootstrap";
 import "./Character.css";
 
 function Character(props) {
-  const [character, updatedCharacter] = useState([]);
+  const [character, setCharacter] = useState([]);
 
   let id = props.match.params.id;
-  console.log(id);
   useEffect(() => {
     fetch(`http://localhost:5000/api/characters/${id}`)
       .then(response => response.json())
-      .then(parsedJSON => updatedCharacter([parsedJSON]));
+      .then(parsedJSON => setCharacter([parsedJSON]))
+      .catch(err => console.log(err));
   }, []);
   return (
     <div>
@@ -26,7 +26,9 @@ function Character(props) {
             </h1>
             <div className="character">
               <div className="one">
-                <div className="avatar"></div>
+                <div className="avatar">
+                  <img src={char.picture} alt={char.firstName} />
+                </div>
                 <h6>Quote</h6>
                 <p>"{char.quote}"</p>
               </div>
@@ -50,7 +52,7 @@ function Character(props) {
                 </p>
               </div>
             </div>
-            <Link className="edit" to="/characters/new">
+            <Link className="edit" to={"/characters/" + id + "/edit"}>
               <Button variant="outline-info">Edit {char.firstName}</Button>
             </Link>
           </div>

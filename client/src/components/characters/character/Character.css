@@ -5,6 +5,11 @@
     border: 2px solid #fff;
 }
 
+.avatar img {
+    height: 200px;
+    width: 140px;
+}
+
 .character-container {
     margin: auto;
     width: 50%;
