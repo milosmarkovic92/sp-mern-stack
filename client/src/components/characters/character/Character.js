@@ -20,41 +20,47 @@ function Character(props) {
         <Link className="add-new" to="/characters/new">
           <Button variant="outline-info">Add New</Button>
         </Link>
-        <h1>
-          {character.firstName} {character.lastName}
-        </h1>
-        <div className="character">
-          <div className="one">
-            <div className="avatar">
-              <img src={character.picture} alt={character.firstName} />
-            </div>
-            <h6>Quote</h6>
-            <p>"{character.quote}"</p>
-          </div>
-          <div className="two">
-            <h6>Age</h6>
-            <p>{character.age}</p>
-            <h6>Occupation</h6>
-            <p>{character.occupation}</p>
-            <h6>Relatives</h6>
-            {character.relatives ? (
-              <div>
-                <p>
-                  <b>Father:</b> {character.relatives.father}
-                </p>
-                <p>
-                  <b>Mother:</b> {character.relatives.mother}
-                </p>
-                <p>
-                  <b>Brother:</b> {character.relatives.brother}
-                </p>
-                <p>
-                  <b>Sister:</b> {character.relatives.sister}
-                </p>
+        {character ? (
+          <>
+            <h1>
+              {character.firstName} {character.lastName}
+            </h1>
+            <div className="character">
+              <div className="one">
+                <div className="avatar">
+                  <img src={character.picture} alt={character.firstName} />
+                </div>
+                <h6>Quote</h6>
+                <p>"{character.quote}"</p>
               </div>
-            ) : null}
-          </div>
-        </div>
+              <div className="two">
+                <h6>Age</h6>
+                <p>{character.age}</p>
+                <h6>Occupation</h6>
+                <p>{character.occupation}</p>
+                <h6>Relatives</h6>
+                {character.relatives ? (
+                  <div>
+                    <p>
+                      <b>Father:</b> {character.relatives.father}
+                    </p>
+                    <p>
+                      <b>Mother:</b> {character.relatives.mother}
+                    </p>
+                    <p>
+                      <b>Brother:</b> {character.relatives.brother}
+                    </p>
+                    <p>
+                      <b>Sister:</b> {character.relatives.sister}
+                    </p>
+                  </div>
+                ) : null}
+              </div>
+            </div>
+          </>
+        ) : (
+          <h3>Successfuly deleted!</h3>
+        )}
         <DeleteCharacter name={character.firstName} id={id} />
         <Link className="edit" to={"/characters/" + id + "/edit"}>
           <Button variant="outline-info">Edit {character.firstName}</Button>
