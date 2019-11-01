@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import FormFields from "../../formFields/FormFields";
 import { Button } from "react-bootstrap";
+import { Redirect } from "react-router-dom";
+import Swal from "sweetalert2";
 import "./NewCharacter.css";
 
 function NewCharacter(props) {
+  const [redirect, setRedirect] = useState(false);
   const [inputs, setInputs] = useState({
     firstName: "",
     lastName: "",
@@ -18,7 +21,25 @@ function NewCharacter(props) {
       sister: ""
     }
   });
-  const [isSent, setIsSent] = useState(false);
+
+  const alertHandler = () => {
+    Swal.fire({
+      width: 200,
+      position: "top-end",
+      type: "success",
+      title: "Success!",
+      showConfirmButton: false,
+      timer: 2500
+    });
+  };
+
+  const redirectHandler = () => {
+    setRedirect(true);
+  };
+
+  const redirectingHandler = () => {
+    return redirect ? <Redirect to="/characters" /> : null;
+  };
 
   const newCharHandler = e => {
     e.preventDefault();
@@ -29,23 +50,25 @@ function NewCharacter(props) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(inputs)
-    }).then(() => setIsSent(true));
+    })
+      .then(redirectHandler)
+      .catch(err => console.log(err));
   };
 
-  const thankYouMessage = <p>Thank you for your input!</p>;
-  const form = (
-    <form onSubmit={newCharHandler}>
-      <FormFields setInputs={setInputs} inputs={inputs} />
-      <Button type="submit" variant="outline-info">
-        Submit
-      </Button>
-    </form>
-  );
-
   return (
-    <div className="add-new-container">
-      <div className="add-new-form">{isSent ? thankYouMessage : form}</div>
-    </div>
+    <>
+      {redirectingHandler()}
+      <div className="add-new-container">
+        <div className="add-new-form">
+          <form onSubmit={newCharHandler}>
+            <FormFields setInputs={setInputs} inputs={inputs} />
+            <Button type="submit" variant="outline-info" onClick={alertHandler}>
+              Submit
+            </Button>
+          </form>
+        </div>
+      </div>
+    </>
   );
 }
 
