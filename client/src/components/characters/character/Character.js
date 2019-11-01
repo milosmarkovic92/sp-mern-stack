@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import DeleteCharacter from "../deleteCharacter/DeleteCharacter";
 import "./Character.css";
 
 function Character(props) {
@@ -54,6 +55,7 @@ function Character(props) {
             ) : null}
           </div>
         </div>
+        <DeleteCharacter name={character.firstName} id={id} />
         <Link className="edit" to={"/characters/" + id + "/edit"}>
           <Button variant="outline-info">Edit {character.firstName}</Button>
         </Link>

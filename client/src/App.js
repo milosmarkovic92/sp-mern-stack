@@ -7,6 +7,7 @@ import Character from "./components/characters/character/Character";
 import NewCharacter from "./components/characters/newCharacter/NewCharacter";
 import Navigation from "./components/nav/Navigation";
 import EditCharacter from "./components/characters/editCharacter/EditCharacter";
+import DeleteCharacter from "./components/characters/deleteCharacter/DeleteCharacter";
 
 function App() {
   return (
@@ -18,6 +19,11 @@ function App() {
         <Route exact path="/characters/new" component={NewCharacter} />
         <Route exact path="/characters/:id" component={Character} />
         <Route exact path="/characters/:id/edit" component={EditCharacter} />
+        <Route
+          exact
+          path="/characters/:id/delete"
+          component={DeleteCharacter}
+        />
       </Switch>
     </div>
   );

@@ -28,6 +28,7 @@ function EditCharacter(props) {
       .then(response => response.json())
       .then(parsedJSON => {
         setCharacter(parsedJSON);
+        // getting values from database and setting to state
         setInputs({
           firstName: parsedJSON.firstName,
           lastName: parsedJSON.lastName,
