@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import Home from "./components/nav/navItems/home/Home";
@@ -10,12 +10,30 @@ import EditCharacter from "./components/characters/editCharacter/EditCharacter";
 import DeleteCharacter from "./components/characters/deleteCharacter/DeleteCharacter";
 
 function App() {
+  const [characters, setCharacters] = useState([]);
+  const [searchValue, setSearchValue] = useState();
+
+  const handleChange = e => {
+    setSearchValue(e.target.value);
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    fetch("http://localhost:5000/api/characters/search?search=" + searchValue)
+      .then(response => response.json())
+      .then(parsedJSON => setCharacters(parsedJSON));
+  };
+
   return (
     <div className="App">
-      <Navigation />
+      <Navigation handleChange={handleChange} handleSubmit={handleSubmit} />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/characters" component={Characters} />
+        <Route
+          exact
+          path="/characters"
+          component={() => <Characters searchCharacters={characters} />}
+        />
         <Route exact path="/characters/new" component={NewCharacter} />
         <Route exact path="/characters/:id" component={Character} />
         <Route exact path="/characters/:id/edit" component={EditCharacter} />

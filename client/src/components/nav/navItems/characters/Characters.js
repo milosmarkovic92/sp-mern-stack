@@ -4,17 +4,21 @@ import { Button } from "react-bootstrap";
 import Pagination from "../../../pagination/Pagination";
 import "./Characters.css";
 
-function Characters(props) {
+function Characters({ searchCharacters }) {
   const [characterList, setCharacterList] = useState([]);
   // const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [charactersPerPage, setCharactersPerPage] = useState(3);
 
+  const bla = () =>
+    searchCharacters.length > 0 ? setCharactersPerPage(1) : null;
+
   useEffect(() => {
     fetch("http://localhost:5000/api/characters")
       .then(response => response.json())
       .then(parsedJSON => setCharacterList(parsedJSON))
+      .then(bla)
       .catch(err => console.log(err));
   }, []);
   // Current characters
@@ -38,7 +42,13 @@ function Characters(props) {
         <div className="characters">
           <ul>
             {currentPost.map(item => {
-              return (
+              return searchCharacters.length > 0 ? (
+                searchCharacters.map(characters => (
+                  <Link to={"/characters/" + characters._id}>
+                    {characters.firstName} {characters.lastName}
+                  </Link>
+                ))
+              ) : (
                 <li key={item._id}>
                   <Link to={"/characters/" + item._id}>
                     {item.firstName} {item.lastName}

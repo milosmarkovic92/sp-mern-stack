@@ -41,3 +41,12 @@ module.exports.remove = (req, res, next) => {
     })
     .catch(next);
 };
+
+module.exports.search = (req, res, next) => {
+  Character.find({ firstName: req.query.search })
+    .then(characters => {
+      console.log("characters: ", characters);
+      res.status(200).send(characters);
+    })
+    .catch(next);
+};

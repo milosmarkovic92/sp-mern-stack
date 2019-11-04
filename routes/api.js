@@ -1,6 +1,9 @@
 const router = require("express").Router();
 const charactersController = require("../controllers/characters.controller");
 
+//route for searching characters
+router.get("/characters/search", charactersController.search);
+
 // route for getting all characters from database
 router.get("/characters", charactersController.index);
 
