@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
+import Swal from "sweetalert2";
 import "./DeleteCharacter.css";
 
 function DeleteCharacter(props) {
@@ -11,8 +12,21 @@ function DeleteCharacter(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const alertHandler = () => {
+    Swal.fire({
+      width: 200,
+      position: "bottom-end",
+      type: "success",
+      customClass: "swal-wide",
+      title: "Success!",
+      showConfirmButton: false,
+      timer: 2500
+    });
+  };
+
   const redirectHandler = () => {
     setRedirect(true);
+    alertHandler();
   };
 
   const redirectingHandler = () => {

@@ -36,3 +36,9 @@ label+input {
 input+input {
     float: right;
 }
+
+.swal-wide {
+    width: 400px !important;
+    height: 120px !important;
+    font-size: 10px;
+}

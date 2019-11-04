@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import FormFields from "../../formFields/FormFields";
+import { Redirect } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function EditCharacter(props) {
+  const [redirect, setRedirect] = useState(false);
   const [character, setCharacter] = useState({});
   const [inputs, setInputs] = useState({
     firstName: "",
@@ -19,9 +22,27 @@ function EditCharacter(props) {
     }
   });
 
-  const [isSent, setIsSent] = useState(false);
-
   const id = props.match.params.id;
+
+  const redirectHandler = () => {
+    setRedirect(true);
+  };
+
+  const redirectingHandler = () => {
+    return redirect ? <Redirect to={"/characters/" + id} /> : null;
+  };
+
+  const alertHandler = () => {
+    Swal.fire({
+      width: 200,
+      position: "bottom-end",
+      type: "success",
+      customClass: "swal-wide",
+      title: "Success!",
+      showConfirmButton: false,
+      timer: 2500
+    });
+  };
 
   useEffect(() => {
     fetch(`http://localhost:5000/api/characters/${id}`)
@@ -57,16 +78,15 @@ function EditCharacter(props) {
       },
       body: JSON.stringify(inputs)
     })
-      .then(() => setIsSent(true))
+      .then(redirectHandler)
       .catch(err => console.log(err));
   };
 
-  const thankYouMessage = <p>Thank you for your input!</p>;
   const form = (
     <div key={character._id}>
       <form onSubmit={editCharHandler}>
         <FormFields setInputs={setInputs} inputs={inputs} />
-        <Button type="submit" variant="outline-info">
+        <Button type="submit" variant="outline-info" onClick={alertHandler}>
           Submit
         </Button>
       </form>
@@ -74,9 +94,12 @@ function EditCharacter(props) {
   );
 
   return (
-    <div className="add-new-container">
-      <div className="add-new-form">{isSent ? thankYouMessage : form}</div>
-    </div>
+    <>
+      {redirectingHandler()}
+      <div className="add-new-container">
+        <div className="add-new-form">{form}</div>
+      </div>
+    </>
   );
 }
 

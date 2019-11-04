@@ -25,8 +25,9 @@ function NewCharacter(props) {
   const alertHandler = () => {
     Swal.fire({
       width: 200,
-      position: "top-end",
+      position: "bottom-end",
       type: "success",
+      customClass: "swal-wide",
       title: "Success!",
       showConfirmButton: false,
       timer: 2500
