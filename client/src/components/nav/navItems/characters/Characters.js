@@ -59,11 +59,13 @@ function Characters({ searchCharacters }) {
             })}
           </ul>
         </div>
-        <Pagination
-          charactersPerPage={charactersPerPage}
-          totalCharacters={characterList.length}
-          paginate={paginate}
-        />
+        {searchCharacters.length > 0 ? null : (
+          <Pagination
+            charactersPerPage={charactersPerPage}
+            totalCharacters={characterList.length}
+            paginate={paginate}
+          />
+        )}
       </div>
     </div>
   );
