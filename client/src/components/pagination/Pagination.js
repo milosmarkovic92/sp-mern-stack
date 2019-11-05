@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 import "./Pagination.css";
 
 function Pagination({ charactersPerPage, totalCharacters, paginate }) {
@@ -15,10 +16,11 @@ function Pagination({ charactersPerPage, totalCharacters, paginate }) {
           <li key={number} className="page-item">
             <Link
               onClick={() => paginate(number)}
-              to="/characters"
-              className="page-link"
+              to={"/characters/#" + number}
             >
-              {number}
+              <Button variant="outline-info" className="pagination-links">
+                {number}
+              </Button>
             </Link>
           </li>
         ))}
