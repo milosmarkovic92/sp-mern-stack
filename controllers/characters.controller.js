@@ -43,9 +43,19 @@ module.exports.remove = (req, res, next) => {
 };
 
 module.exports.search = (req, res, next) => {
-  Character.find({ firstName: req.query.search })
-    .then(characters => {
-      res.status(200).send(characters);
+  if (req.query.search) {
+    const regex = new RegExp(escapeRegex(req.query.search), "gi");
+
+    Character.find({
+      $or: [{ firstName: regex }, { lastName: regex }]
     })
-    .catch(next);
+      .then(characters => {
+        res.status(200).send(characters);
+      })
+      .catch(next);
+  }
 };
+
+function escapeRegex(text) {
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+}

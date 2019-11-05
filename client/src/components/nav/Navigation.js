@@ -27,17 +27,15 @@ function Navigation({ handleChange, handleSubmit }) {
           <Link to="/about">About</Link>
           <Link to="/contact">Contact</Link>
         </Nav>
-        <Form inline onSubmit={handleSubmit}>
+        <Form inline>
           <FormControl
             id="search"
             type="text"
             placeholder="Search"
             className="mr-sm-2"
             onChange={handleChange}
+            onKeyUp={handleSubmit}
           />
-          <Button type="submit" variant="outline-info">
-            Search
-          </Button>
         </Form>
       </Navbar>
     </div>

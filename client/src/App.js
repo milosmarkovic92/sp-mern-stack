@@ -13,6 +13,7 @@ function App() {
   const [characters, setCharacters] = useState([]);
   const [searchValue, setSearchValue] = useState();
 
+  // Search
   const handleChange = e => {
     setSearchValue(e.target.value);
   };

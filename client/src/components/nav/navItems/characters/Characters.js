@@ -44,9 +44,11 @@ function Characters({ searchCharacters }) {
             {currentPost.map(item => {
               return searchCharacters.length > 0 ? (
                 searchCharacters.map(characters => (
-                  <Link to={"/characters/" + characters._id}>
-                    {characters.firstName} {characters.lastName}
-                  </Link>
+                  <li key={characters._id}>
+                    <Link to={"/characters/" + characters._id}>
+                      {characters.firstName} {characters.lastName}
+                    </Link>
+                  </li>
                 ))
               ) : (
                 <li key={item._id}>
