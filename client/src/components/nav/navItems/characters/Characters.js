@@ -11,27 +11,27 @@ function Characters({ searchCharacters }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [charactersPerPage, setCharactersPerPage] = useState(3);
 
-  const bla = () =>
-    searchCharacters.length > 0 ? setCharactersPerPage(1) : null;
-
   useEffect(() => {
     fetch("http://localhost:5000/api/characters")
       .then(response => response.json())
       .then(parsedJSON => setCharacterList(parsedJSON))
-      .then(bla)
       .catch(err => console.log(err));
   }, []);
+
   // Current characters
   const indexOfLastCharacter = currentPage * charactersPerPage;
   const indexOfFirstCharacter = indexOfLastCharacter - charactersPerPage;
-  const currentPost = characterList.slice(
+  const currentCharacters = characterList.slice(
+    indexOfFirstCharacter,
+    indexOfLastCharacter
+  );
+  const searchedCharacters = searchCharacters.slice(
     indexOfFirstCharacter,
     indexOfLastCharacter
   );
 
   // Change page
   const paginate = pageNumber => setCurrentPage(pageNumber);
-
   return (
     <div>
       <div className="characters-container">
@@ -41,27 +41,32 @@ function Characters({ searchCharacters }) {
         <h1>List of characters</h1>
         <div className="characters">
           <ul>
-            {currentPost.map(item => {
-              return searchCharacters.length > 0 ? (
-                searchCharacters.map(characters => (
+            {searchCharacters.length > 0
+              ? searchedCharacters.map(characters => (
                   <li key={characters._id}>
                     <Link to={"/characters/" + characters._id}>
                       {characters.firstName} {characters.lastName}
                     </Link>
+                    <hr />
                   </li>
                 ))
-              ) : (
-                <li key={item._id}>
-                  <Link to={"/characters/" + item._id}>
-                    {item.firstName} {item.lastName}
-                  </Link>
-                  <hr />
-                </li>
-              );
-            })}
+              : currentCharacters.map(item => (
+                  <li key={item._id}>
+                    <Link to={"/characters/" + item._id}>
+                      {item.firstName} {item.lastName}
+                    </Link>
+                    <hr />
+                  </li>
+                ))}
           </ul>
         </div>
-        {searchCharacters.length > 0 ? null : (
+        {searchCharacters.length > 0 ? (
+          <Pagination
+            charactersPerPage={charactersPerPage}
+            totalCharacters={searchCharacters.length}
+            paginate={paginate}
+          />
+        ) : (
           <Pagination
             charactersPerPage={charactersPerPage}
             totalCharacters={characterList.length}
