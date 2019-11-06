@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import FormFields from "../../formFields/FormFields";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 function EditCharacter(props) {
@@ -86,8 +86,22 @@ function EditCharacter(props) {
     <div key={character._id}>
       <form onSubmit={editCharHandler}>
         <FormFields setInputs={setInputs} inputs={inputs} />
-        <Button type="submit" variant="outline-info" onClick={alertHandler}>
-          Submit
+        <Link to={"/characters/" + id}>
+          <Button
+            type="submit"
+            variant="outline-info"
+            className="mt-2 mr-2 ml-4"
+          >
+            Cancel
+          </Button>
+        </Link>
+        <Button
+          type="submit"
+          variant="outline-success"
+          className="mt-2 ml-2"
+          onClick={alertHandler}
+        >
+          Save changes
         </Button>
       </form>
     </div>

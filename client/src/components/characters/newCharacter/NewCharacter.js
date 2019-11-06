@@ -63,7 +63,11 @@ function NewCharacter(props) {
         <div className="add-new-form">
           <form onSubmit={newCharHandler}>
             <FormFields setInputs={setInputs} inputs={inputs} />
-            <Button type="submit" variant="outline-info" onClick={alertHandler}>
+            <Button
+              type="submit"
+              variant="outline-success"
+              onClick={alertHandler}
+            >
               Submit
             </Button>
           </form>

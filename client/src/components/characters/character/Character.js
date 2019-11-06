@@ -85,6 +85,9 @@ function Character(props) {
         ) : (
           <h3>Successfuly deleted!</h3>
         )}
+        <Link className="back" to="/characters">
+          <Button variant="outline-light">Back to characters</Button>
+        </Link>
         <DeleteCharacter name={character.firstName} id={id} />
         <Link className="edit" to={"/characters/" + id + "/edit"}>
           <Button variant="outline-info">Edit {character.firstName}</Button>
