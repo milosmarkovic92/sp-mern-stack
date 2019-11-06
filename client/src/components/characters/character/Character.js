@@ -6,14 +6,38 @@ import "./Character.css";
 
 function Character(props) {
   const [character, setCharacter] = useState({});
+  const [loading, setLoading] = useState(false);
 
   let id = props.match.params.id;
   useEffect(() => {
-    fetch(`http://localhost:5000/api/characters/${id}`)
-      .then(response => response.json())
-      .then(parsedJSON => setCharacter(parsedJSON))
-      .catch(err => console.log(err));
+    // fetch(`http://localhost:5000/api/characters/${id}`)
+    //   .then(response => response.json())
+    //   .then(parsedJSON => setCharacter(parsedJSON))
+    //   .catch(err => console.log(err));
+
+    const funct = async () => {
+      setLoading(true);
+      const res = await fetch(`http://localhost:5000/api/characters/${id}`);
+      const data = await res.json();
+      setCharacter(data);
+      setLoading(false);
+    };
+
+    funct();
   }, []);
+
+  if (loading) {
+    return (
+      <div className="characters-container">
+        <h1>Loading character</h1>
+        <div class="lds-facebook">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div>
       <div className="character-container">

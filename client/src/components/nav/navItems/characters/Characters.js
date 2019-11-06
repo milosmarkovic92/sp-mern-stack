@@ -6,16 +6,20 @@ import "./Characters.css";
 
 function Characters({ searchCharacters }) {
   const [characterList, setCharacterList] = useState([]);
-  // const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [charactersPerPage, setCharactersPerPage] = useState(3);
+  const [charactersPerPage] = useState(3);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/characters")
-      .then(response => response.json())
-      .then(parsedJSON => setCharacterList(parsedJSON))
-      .catch(err => console.log(err));
+    const funct = async () => {
+      setLoading(true);
+      const res = await fetch("http://localhost:5000/api/characters");
+      const data = await res.json();
+      setCharacterList(data);
+      setLoading(false);
+    };
+
+    funct();
   }, []);
 
   // Current characters
@@ -32,6 +36,18 @@ function Characters({ searchCharacters }) {
 
   // Change page
   const paginate = pageNumber => setCurrentPage(pageNumber);
+  if (loading) {
+    return (
+      <div className="characters-container">
+        <h1>Loading characters</h1>
+        <div class="lds-facebook">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div>
       <div className="characters-container">
