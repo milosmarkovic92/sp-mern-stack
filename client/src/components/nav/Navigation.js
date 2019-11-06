@@ -1,21 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
+import { Navbar, Nav, Form, FormControl } from "react-bootstrap";
 import logo from "../../assets/south-park-sign.png";
 import "./Navigation.css";
 
 function Navigation({ handleChange, handleSubmit }) {
-  // const [characters, setCharacters] = useState([]);
-
-  // const handleChange = e => {
-  //   e.preventDefault();
-  //   let searchValue = e.target.value;
-  //   console.log(searchValue);
-  //   fetch("http://localhost:5000/api/characters/search?search=" + searchValue)
-  //     .then(response => response.json())
-  //     .then(parsedJSON => setCharacters(parsedJSON));
-  // };
-  // console.log(characters);
   return (
     <div className="nav-container">
       <Navbar bg="dark" variant="dark">
