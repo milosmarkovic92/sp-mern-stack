@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FormFields from "../../formFields/FormFields";
 import { Button } from "react-bootstrap";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import "./NewCharacter.css";
 
@@ -63,9 +63,19 @@ function NewCharacter(props) {
         <div className="add-new-form">
           <form onSubmit={newCharHandler}>
             <FormFields setInputs={setInputs} inputs={inputs} />
+            <Link to="/characters">
+              <Button
+                type="submit"
+                variant="outline-info"
+                className="mt-2 mr-2 ml-4"
+              >
+                Cancel
+              </Button>
+            </Link>
             <Button
               type="submit"
               variant="outline-success"
+              className="mt-2 ml-2"
               onClick={alertHandler}
             >
               Submit

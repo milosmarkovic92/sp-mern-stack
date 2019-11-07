@@ -10,11 +10,6 @@ function Character(props) {
 
   let id = props.match.params.id;
   useEffect(() => {
-    // fetch(`http://localhost:5000/api/characters/${id}`)
-    //   .then(response => response.json())
-    //   .then(parsedJSON => setCharacter(parsedJSON))
-    //   .catch(err => console.log(err));
-
     const funct = async () => {
       setLoading(true);
       const res = await fetch(`http://localhost:5000/api/characters/${id}`);
