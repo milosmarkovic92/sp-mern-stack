@@ -91,3 +91,27 @@ hr {
         height: 26px;
     }
 }
+
+/* search form goes here */
+
+.search-container {
+    padding: 0.4rem 0;
+    border-bottom: 4px solid #383838;
+    width: 90vw;
+}
+
+.search {
+    position: relative;
+    width: 80%;
+    left: -10%;
+    margin: 20px 0 20px 0;
+    color: white;
+    background-color: #1F1F1F;
+    display: inline-block;
+    padding: 0.4rem 0;
+    border-bottom: 4px solid #D5BA5E;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    outline: 0;
+}

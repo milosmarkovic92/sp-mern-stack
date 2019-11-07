@@ -15,6 +15,7 @@ function App() {
 
   // Search
   const handleChange = e => {
+    e.preventDefault();
     setSearchValue(e.target.value);
   };
 
@@ -27,13 +28,19 @@ function App() {
 
   return (
     <div className="App">
-      <Navigation handleChange={handleChange} handleSubmit={handleSubmit} />
+      <Navigation />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route
           exact
           path="/characters"
-          component={() => <Characters searchCharacters={characters} />}
+          component={() => (
+            <Characters
+              searchCharacters={characters}
+              handleChange={handleChange}
+              handleSubmit={handleSubmit}
+            />
+          )}
         />
         <Route exact path="/characters/new" component={NewCharacter} />
         <Route exact path="/characters/:id" component={Character} />

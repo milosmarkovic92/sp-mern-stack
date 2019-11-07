@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, Form, FormControl } from "react-bootstrap";
 import Pagination from "../../../pagination/Pagination";
 import "./Characters.css";
 
-function Characters({ searchCharacters }) {
+function Characters({ searchCharacters, handleChange, handleSubmit }) {
   const [characterList, setCharacterList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -51,6 +51,15 @@ function Characters({ searchCharacters }) {
   return (
     <div>
       <div className="characters-container">
+        <div>
+          <input
+            type="text"
+            placeholder="Search characters..."
+            className="search"
+            onChange={handleChange}
+            onKeyUp={handleSubmit}
+          />
+        </div>
         <Link className="add-new" to="/characters/new">
           <Button variant="outline-info">Add New</Button>
         </Link>
