@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Navbar, Nav, Form, FormControl } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 import logo from "../../assets/south-park-sign.png";
 import Kenny from "../formFields/Kenny/Kenny";
 import "./Navigation.css";

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Button, Form, FormControl } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import Pagination from "../../../pagination/Pagination";
 import "./Characters.css";
 
@@ -40,7 +40,7 @@ function Characters({ searchCharacters, handleChange, handleSubmit }) {
     return (
       <div className="characters-container">
         <h1>Loading characters</h1>
-        <div class="lds-facebook">
+        <div className="lds-facebook">
           <div></div>
           <div></div>
           <div></div>
